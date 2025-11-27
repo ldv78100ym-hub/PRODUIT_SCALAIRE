@@ -17,6 +17,21 @@
             background-color: #fcfcfc;
         }
 
+        /* Bouton Retour Ressources (Nouveau) */
+        #back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #6c757d; /* Gris secondaire */
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+        }
+        #back-btn:hover { background-color: #5a6268; }
+
         .header {
             display: flex;
             justify-content: space-between;
@@ -145,7 +160,7 @@
             .modal-content { margin: 15% auto; width: 90%; padding: 20px; }
         }
         @media print {
-            .footer-actions, .btn-action, .modal { display: none !important; }
+            .footer-actions, .btn-action, .modal, #back-btn { display: none !important; }
         }
     </style>
     
@@ -161,6 +176,8 @@
 </head>
 <body>
 
+    <a href="https://ldv78100ym-hub.github.io/HOME/" id="back-btn">↩ Retour Ressources</a>
+
     <div class="header">
         <span>Cours : Produit Scalaire</span>
         <span>1<sup>re</sup> STI2D / STL</span>
@@ -168,12 +185,14 @@
 
     <h1 class="main-title">Le Produit Scalaire : Un Outil Puissant</h1>
     
-    <button class="btn-action btn-relance" onclick="generateAllExercises()">🔄 Relancer TOUS les exercices</button>
-
+    
     <p>Le produit scalaire est une opération mathématique qui prend deux vecteurs et donne un <strong>nombre</strong> (un scalaire). Ce nombre est essentiel car il lie la <strong>longueur</strong> des vecteurs et l'<strong>angle</strong> qu'ils forment.</p>
 
     <h2>Définition Géométrique : L'Essence de l'Angle</h2>
     
+
+[Image of geometric interpretation of scalar product]
+
     <div class="canvas-container">
         <canvas id="canvas_cours_geo" width="400" height="200"></canvas>
     </div>
@@ -211,6 +230,9 @@
     </div>
 
     <h2>Lien Fondamental avec la Physique : Le Travail d'une Force</h2>
+    
+
+[Image of work of a force projection]
 
     <div class="canvas-container">
         <canvas id="canvas_cours_travail" width="500" height="200"></canvas>
@@ -234,6 +256,9 @@
     <p>Le produit scalaire vérifie les propriétés suivantes : Commutativité et Bilinéarité (distributivité).</p>
 
     <h2>Application : Le Théorème d'Al-Kashi (Loi des cosinus)</h2>
+    
+
+[Image of triangle for law of cosines]
 
     <div class="canvas-container">
         <canvas id="canvas_cours_alkashi" width="400" height="250"></canvas>
@@ -716,8 +741,8 @@
                 copyrightModal.style.display = "none";
             }
 
-            copyrightBtn.addEventListener('click', openModal);
-            closeBtn.addEventListener('click', closeModal);
+            if(copyrightBtn) copyrightBtn.addEventListener('click', openModal);
+            if(closeBtn) closeBtn.addEventListener('click', closeModal);
             window.addEventListener('click', (event) => {
                 if (event.target === copyrightModal) {
                     closeModal();
