@@ -17,7 +17,7 @@
             background-color: #fcfcfc;
         }
 
-        /* Bouton Retour Ressources (Nouveau) */
+        /* Bouton Retour Ressources */
         #back-btn {
             display: inline-block;
             text-decoration: none;
@@ -185,42 +185,54 @@
 
     <h1 class="main-title">Le Produit Scalaire : Un Outil Puissant</h1>
     
-    
     <p>Le produit scalaire est une opération mathématique qui prend deux vecteurs et donne un <strong>nombre</strong> (un scalaire). Ce nombre est essentiel car il lie la <strong>longueur</strong> des vecteurs et l'<strong>angle</strong> qu'ils forment.</p>
 
     <h2>Définition Géométrique : L'Essence de l'Angle</h2>
     
-
-[Image of geometric interpretation of scalar product]
-
+    
     <div class="canvas-container">
         <canvas id="canvas_cours_geo" width="400" height="200"></canvas>
     </div>
 
     <h3>Formule du Produit Scalaire</h3>
-    <p>Le produit scalaire de deux vecteurs non nuls \(\vec{u}\) et \(\vec{v}\) est défini par la formule :</p>
+    <p>Si \(\vec{u}\) et \(\vec{v}\) sont non nuls, le produit scalaire est défini par :</p>
     <div class="math-display">
         \[\vec{u} \cdot \vec{v} = \left\Vert \vec{u} \right\Vert \times \left\Vert \vec{v} \right\Vert \times \cos(\theta)\]
     </div>
     <p>Où :</p>
     <ul>
         <li>\(\left\Vert \vec{u} \right\Vert\) et \(\left\Vert \vec{v} \right\Vert\) sont les <strong>normes</strong> (longueurs) des vecteurs.</li>
-        <li>\(\theta\) est l'<strong>angle</strong> non orienté entre \(\vec{u}\) et \(\vec{v}\).</li>
+        <li>\(\theta\) est l'<strong>angle orienté</strong> entre \(\vec{u}\) et \(\vec{v}\).</li>
     </ul>
 
     <h3>Caractérisation de l'Orthogonalité</h3>
     <p>Le terme \(\cos(\theta)\) permet de déterminer l'orientation relative des vecteurs. Le cas le plus important est celui de l'orthogonalité.</p>
-    <p><strong>Critère d'orthogonalité :</strong></p>
     <div class="math-display">
         \[\vec{u} \perp \vec{v} \iff \vec{u} \cdot \vec{v} = 0\]
     </div>
     <div class="remarque">
-        (Si les vecteurs sont perpendiculaires, \(\theta = 90^\circ\), donc \(\cos(\theta) = 0\)).
+        <p>Si les vecteurs sont perpendiculaires, \(\theta = 90^\circ~~\left(\text{respectivement : }~\theta=\dfrac{\pi}{2}\right)\),</p>
+	<p>alors \(\cos(90^\circ) = 0~~\left(\text{respectivement : }~\cos\left(\dfrac{\pi}{2}\right)=0\right)\)</p>
     </div>
+
+    <h2>Projection Orthogonale : La Mesure de l'Effet Utile</h2>
+    
+    <p>Le produit scalaire peut être interprété comme le produit de la norme d'un vecteur par la mesure algébrique de la projection de l'autre.</p>
+    
+    
+    <div class="canvas-container">
+        <canvas id="canvas_cours_proj" width="400" height="200"></canvas>
+    </div>
+
+    <p>Soit \(\vec{u'}\) (ou \(\vec{AH}\)) la projection orthogonale de \(\vec{u}\) sur l'axe dirigé par \(\vec{v}\). La formule devient :</p>
+    <div class="math-display">
+        \[\vec{u} \cdot \vec{v} = \overline{AH} \times ||\vec{v}||\]
+    </div>
+    <p>Cette méthode est particulièrement utile quand les longueurs projetées sont faciles à lire sur une grille ou un schéma, évitant le calcul explicite de l'angle \(\theta\).</p>
 
     <h2>Définition Analytique (Dans un Repère Orthonormé)</h2>
 
-    <p>Dans un repère orthonormé \((O; \vec{i}, \vec{j})\), si les coordonnées des vecteurs sont :</p>
+    <p>Les situations de géométrie repérée sont uniquement traitées dans un <strong>repère orthonormé</strong> \((O; \vec{i}, \vec{j})\). Si les coordonnées des vecteurs sont :</p>
     <div class="math-display">
         \[\vec{u} \begin{pmatrix} x \\ y \end{pmatrix} \quad \text{et} \quad \vec{v} \begin{pmatrix} x' \\ y' \end{pmatrix}\]
     </div>
@@ -229,44 +241,66 @@
         \[\vec{u} \cdot \vec{v} = x x' + y y'\]
     </div>
 
+    <h3>Norme d'un vecteur (Carré Scalaire)</h3>
+    <p>La norme d'un vecteur est liée au produit scalaire du vecteur par lui-même (carré scalaire) :</p>
+    <div class="math-display">
+        \[||\vec{u}|| = \sqrt{\vec{u} \cdot \vec{u}} = \sqrt{x^2 + y^2}\]
+    </div>
+    <h3>Formule de Polarisation (Lien avec les normes)</h3>
+    <p>Cette formule permet de calculer le produit scalaire en utilisant uniquement les normes des vecteurs (somme et individuelles) :</p>
+    <div class="math-display">
+        \[\vec{u} \cdot \vec{v} = \dfrac{1}{2} \left( \left\Vert \vec{u} + \vec{v} \right\Vert^2 - \left\Vert \vec{u} \right\Vert^2 - \left\Vert \vec{v} \right\Vert^2 \right)\]
+    </div>
+    <h2>Propriétés Algébriques (Calcul Simplifié)</h2>
+    <p>Le produit scalaire vérifie des propriétés semblables au calcul littéral classique sur les réels :</p>
+    <ul>
+        <li><strong>Symétrie :</strong> \(\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}\)</li>
+        <li><strong>Bilinéarité :</strong> Pour tout réel \(k\) et tous vecteurs \(\vec{u}, \vec{v}, \vec{w}\) :
+            <ul>
+                <li>\(\vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}\) (Distributivité)</li>
+                <li>\((k\vec{u}) \cdot \vec{v} = k (\vec{u} \cdot \vec{v})\)</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="remarque">
+        En physique, la bilinéarité justifie que le travail de la force résultante est égal à la somme des travaux de chaque force.
+    </div>
+
     <h2>Lien Fondamental avec la Physique : Le Travail d'une Force</h2>
     
-
-[Image of work of a force projection]
-
+    
     <div class="canvas-container">
         <canvas id="canvas_cours_travail" width="500" height="200"></canvas>
     </div>
 
-    <p>En physique, le produit scalaire sert à calculer le <strong>travail</strong> \(W\) d'une force constante \(\vec{F}\) lors d'un déplacement rectiligne \(\vec{AB}\).</p>
+    <p>En physique, le produit scalaire sert à calculer le <strong>travail</strong> \(W\) d'une force constante \(\vec{F}\) lors d'un déplacement rectiligne \(\vec{AB}\) (noté \(\vec{d}\)).</p>
     <div class="math-display">
-        \[W(\vec{F}) = \vec{F} \cdot \vec{AB}\]
-    </div>
-    <p>En utilisant la définition géométrique :</p>
-    <div class="math-display">
-        \[W(\vec{F}) = \left\Vert \vec{F} \right\Vert \times \left\Vert \vec{AB} \right\Vert \times \cos(\theta)\]
+        \[W = \vec{F} \cdot \vec{d} = ||\vec{F}|| \times ||\vec{d}|| \times \cos(\theta)\]
     </div>
     <ul>
-        <li>Si la force \(\vec{F}\) est <strong>perpendiculaire</strong> au déplacement \(\vec{AB}\) (force normale, réaction), alors \(W(\vec{F}) = 0\).</li>
-        <li>Si la force \(\vec{F}\) est dans le <strong>sens du mouvement</strong>, \(\cos(\theta) > 0\), alors \(W(\vec{F}) > 0\) (<strong>travail moteur</strong>).</li>
-        <li>Si la force \(\vec{F}\) est dans le <strong>sens inverse du mouvement</strong>, \(\cos(\theta) < 0\), alors \(W(\vec{F}) < 0\) (<strong>travail résistant</strong>).</li>
+        <li>Si la force est <strong>perpendiculaire</strong> au déplacement, \(W = 0\) (Travail nul).</li>
+        <li>Si \(\cos(\theta) > 0\), le travail est <strong>moteur</strong>.</li>
+        <li>Si \(\cos(\theta) < 0\), le travail est <strong>résistant</strong>.</li>
     </ul>
     
-    <h2>Propriétés Algébriques</h2>
-    <p>Le produit scalaire vérifie les propriétés suivantes : Commutativité et Bilinéarité (distributivité).</p>
+    <h2>Applications aux Triangles et Longueurs</h2>
 
-    <h2>Application : Le Théorème d'Al-Kashi (Loi des cosinus)</h2>
+    <h3>Théorème d'Al-Kashi (Loi des cosinus)</h3>
+    <p>Ce théorème est une <strong>généralisation du Théorème de Pythagore</strong>. Dans un triangle \(ABC\) :</p>
+
     
-
-[Image of triangle for law of cosines]
-
     <div class="canvas-container">
         <canvas id="canvas_cours_alkashi" width="400" height="250"></canvas>
     </div>
 
-    <p>Dans un triangle \(ABC\), si l'on note \(a\), \(b\), \(c\) les longueurs des côtés opposés aux sommets \(A\), \(B\), \(C\) respectivement, on a la relation :</p>
     <div class="math-display">
         \[c^2 = a^2 + b^2 - 2ab \cos(\widehat{C})\]
+    </div>
+
+    <h3>Égalité du Parallélogramme</h3>
+    <p>Si \(\vec{u}\) et \(\vec{v}\) forment un parallélogramme, cette égalité relie les carrés des longueurs des côtés et des diagonales:</p>
+    <div class="math-display">
+        \[||\vec{u} + \vec{v}||^2 + ||\vec{u} - \vec{v}||^2 = 2 \\left( ||\vec{u}||^2 + ||\vec{v}||^2 \\right)\]
     </div>
 
     <hr>
@@ -278,7 +312,7 @@
     <div class="exercice-bloc">
         <h3 class="niveau-titre">Niveau 2 : Calcul avec angles en radians</h3>
         <div class="document-analyse">
-            <strong>Données :</strong> \(\left\Vert \vec{u} \right\Vert = \)<span id="u_norm_1_2"></span>, \(\left\Vert \vec{v} \right\Vert = \)<span id="v_norm_1_2"></span>.
+            <strong>Données :</strong> \(\left\Vert \vec{u}\right\Vert = \)<span id="u_norm_1_2"></span>, \(\left\Vert \vec{v} \right\Vert = \)<span id="v_norm_1_2"></span>.
             Angle \((\vec{u}, \vec{v}) = \)<span id="angle_val_1_2"></span>.
         </div>
         <p><strong>Question :</strong> Calculer la valeur exacte du produit scalaire \(\vec{u} \cdot \vec{v}\).</p>
@@ -433,6 +467,126 @@
             <div id="sol_content_6_2"></div>
         </div>
     </div>
+    <h2>7. Jongler avec les Formules (Synthèse Avancée)</h2>
+    <p>Dans cette section, vous devez identifier l'inconnue et utiliser deux formules du produit scalaire pour la trouver.</p>
+
+    <div class="exercice-bloc">
+        <h3 class="niveau-titre">7.1. Lien Analytique \(\leftrightarrow\) Polarisation</h3>
+        <div class="document-analyse">
+            <strong>Données :</strong> <span id="enonce_7_1"></span>
+        </div>
+        <p><strong>Question :</strong> <span id="question_7_1"></span></p>
+        
+        <button class="btn-action btn-reset-ex" onclick="resetExercise('sol_ex_7_1', generateEx7_1)">🔄 Nouvelles valeurs</button>
+        <button class="btn-action btn-solution" onclick="toggleSolution('sol_ex_7_1')">Afficher la Solution</button>
+        
+        <div class="solution-bloc" id="sol_ex_7_1">
+            <p><strong>Solution :</strong></p>
+            <div id="sol_content_7_1"></div>
+        </div>
+    </div>
+
+    <div class="exercice-bloc">
+        <h3 class="niveau-titre">7.2. Lien Analytique \(\leftrightarrow\) Géométrique</h3>
+        <div class="document-analyse">
+            <strong>Données :</strong> <span id="enonce_7_2"></span>
+        </div>
+        <p><strong>Question :</strong> <span id="question_7_2"></span></p>
+        
+        <button class="btn-action btn-reset-ex" onclick="resetExercise('sol_ex_7_2', generateEx7_2)">🔄 Nouvelles valeurs</button>
+        <button class="btn-action btn-solution" onclick="toggleSolution('sol_ex_7_2')">Afficher la Solution</button>
+        
+        <div class="solution-bloc" id="sol_ex_7_2">
+            <p><strong>Solution :</strong></p>
+            <div id="sol_content_7_2"></div>
+        </div>
+    </div>
+
+    <div class="exercice-bloc">
+        <h3 class="niveau-titre">7.3. Lien Polarisation \(\leftrightarrow\) Géométrique</h3>
+        <div class="document-analyse">
+            <strong>Données :</strong> <span id="enonce_7_3"></span>
+        </div>
+        <p><strong>Question :</strong> <span id="question_7_3"></span></p>
+        
+        <button class="btn-action btn-reset-ex" onclick="resetExercise('sol_ex_7_3', generateEx7_3)">🔄 Nouvelles valeurs</button>
+        <button class="btn-action btn-solution" onclick="toggleSolution('sol_ex_7_3')">Afficher la Solution</button>
+        
+        <div class="solution-bloc" id="sol_ex_7_3">
+            <p><strong>Solution :</strong></p>
+            <div id="sol_content_7_3"></div>
+        </div>
+    </div>
+   <h2>8. Le Défi Ultime (Mélange total)</h2>
+    <p>Dans ces exercices, l'ordinateur choisit au hasard l'inconnue. À vous de retrouver le chemin logique pour la calculer.</p>
+
+    <div class="exercice-bloc">
+        <h3 class="niveau-titre">8.1. Défi Analytique & Normes</h3>
+        <p><em>Variables possibles : \(\vec{u} \cdot \vec{v}, \left\Vert \vec{u} + \vec{v} \right\Vert, \left\Vert \vec{u} \right\Vert, \left\Vert \vec{v} \right\Vert, x, y, x', y'\)</em></p>
+        <div class="document-analyse">
+            <strong>Données :</strong> <span id="enonce_8_1"></span>
+        </div>
+        <p><strong>Question :</strong> <span id="question_8_1"></span></p>
+        
+        <button class="btn-action btn-reset-ex" onclick="resetExercise('sol_ex_8_1', generateEx8_1)">🎲 Nouveau Tirage</button>
+        <button class="btn-action btn-solution" onclick="toggleSolution('sol_ex_8_1')">Afficher la Solution</button>
+        
+        <div class="solution-bloc" id="sol_ex_8_1">
+            <p><strong>Solution :</strong></p>
+            <div id="sol_content_8_1"></div>
+        </div>
+    </div>
+
+    <div class="exercice-bloc">
+        <h3 class="niveau-titre">8.2. Défi Coordonnées & Angles</h3>
+        <p><em>Variables possibles : \(\vec{u} \cdot \vec{v}, x, y, x', y', \left\Vert \vec{u} \right\Vert, \left\Vert \vec{v} \right\Vert, \cos(\theta)\)</em></p>
+        <div class="document-analyse">
+            <strong>Données :</strong> <span id="enonce_8_2"></span>
+        </div>
+        <p><strong>Question :</strong> <span id="question_8_2"></span></p>
+        
+        <button class="btn-action btn-reset-ex" onclick="resetExercise('sol_ex_8_2', generateEx8_2)">🎲 Nouveau Tirage</button>
+        <button class="btn-action btn-solution" onclick="toggleSolution('sol_ex_8_2')">Afficher la Solution</button>
+        
+        <div class="solution-bloc" id="sol_ex_8_2">
+            <p><strong>Solution :</strong></p>
+            <div id="sol_content_8_2"></div>
+        </div>
+    </div>
+
+    <div class="exercice-bloc">
+        <h3 class="niveau-titre">8.3. Défi Géométrique Pur (Sans coord.)</h3>
+        <p><em>Variables possibles : \(\vec{u} \cdot \vec{v}, \left\Vert \vec{u} + \vec{v} \right\Vert, \left\Vert \vec{u} \right\Vert, \left\Vert \vec{v} \right\Vert, \cos(\theta)\)</em></p>
+        <div class="document-analyse">
+            <strong>Données :</strong> <span id="enonce_8_3"></span>
+        </div>
+        <p><strong>Question :</strong> <span id="question_8_3"></span></p>
+        
+        <button class="btn-action btn-reset-ex" onclick="resetExercise('sol_ex_8_3', generateEx8_3)">🎲 Nouveau Tirage</button>
+        <button class="btn-action btn-solution" onclick="toggleSolution('sol_ex_8_3')">Afficher la Solution</button>
+        
+        <div class="solution-bloc" id="sol_ex_8_3">
+            <p><strong>Solution :</strong></p>
+            <div id="sol_content_8_3"></div>
+        </div>
+    </div>
+
+    <div class="exercice-bloc">
+        <h3 class="niveau-titre">8.4. Polarisation et Angle (Sans coordonnées)</h3>
+        <p><em>Variables en jeu : \(\vec{u} \cdot \vec{v}, \left\Vert \vec{u} + \vec{v} \right\Vert, \left\Vert \vec{u} \right\Vert, \left\Vert \vec{v} \right\Vert, \cos(\theta)\)</em></p>
+        <div class="document-analyse">
+            <strong>Données :</strong> <span id="enonce_8_4"></span>
+        </div>
+        <p><strong>Question :</strong> <span id="question_8_4"></span></p>
+        
+        <button class="btn-action btn-reset-ex" onclick="resetExercise('sol_ex_8_4', generateEx8_4)">🔄 Nouveau Défi</button>
+        <button class="btn-action btn-solution" onclick="toggleSolution('sol_ex_8_4')">Afficher la Solution</button>
+        
+        <div class="solution-bloc" id="sol_ex_8_4">
+            <p><strong>Solution :</strong></p>
+            <div id="sol_content_8_4"></div>
+        </div>
+    </div>
 
     <div class="footer-actions">
         <button id="copyright-btn" class="btn-action">⚖️ Droits d'Auteur</button>
@@ -520,6 +674,59 @@
             drawAngle(ctx, Ox, Oy, 40, angleV, 0, "θ");
             ctx.fillStyle = "black"; ctx.fillText("O", Ox-15, Oy+5);
         }
+        
+        // AJOUT : Fonction pour dessiner la projection orthogonale (Illustration)
+        function drawCourseProjection() {
+            const canvas = document.getElementById('canvas_cours_proj');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            
+            const Ax = 50, Ay = 150;
+            // Vecteur v horizontal pour simplifier l'illustration
+            const Bx = 350, By = 150; 
+            
+            // Vecteur u
+            const UendX = 250, UendY = 50;
+            
+            // Projection H (sur AB)
+            const Hx = 250, Hy = 150;
+
+            // Tracer v (AB)
+            drawArrow(ctx, Ax, Ay, Bx, By, "#007bff", "v");
+            
+            // Tracer u (A -> Uend)
+            drawArrow(ctx, Ax, Ay, UendX, UendY, "#dc3545", "u");
+
+            // Tracer pointillés projection
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(UendX, UendY);
+            ctx.lineTo(Hx, Hy);
+            ctx.strokeStyle = "gray";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.setLineDash([]); // Reset dash
+
+            // Tracer u' (AH) - Projection
+            drawArrow(ctx, Ax, Ay, Hx, Hy, "#28a745", "");
+            
+            // Labels
+            ctx.fillStyle = "black"; 
+            ctx.fillText("A", Ax, Ay + 20);
+            ctx.fillText("H", Hx, Hy + 20);
+            ctx.fillStyle = "#28a745";
+            ctx.fillText("u' (projeté)", (Ax+Hx)/2 - 20, Hy + 20);
+            
+            // Angle droit
+            ctx.beginPath();
+            ctx.moveTo(Hx, Hy - 10);
+            ctx.lineTo(Hx + 10, Hy - 10);
+            ctx.lineTo(Hx + 10, Hy);
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
 
         function drawCourseWork() {
             const canvas = document.getElementById('canvas_cours_travail');
@@ -577,102 +784,285 @@
         }
 
         // Ex 1.2
+        // Ex 1.2 : Définition Géométrique
         function generateEx1_2() {
-            let u = getRandomInt(2, 8); let v = getRandomInt(2, 8);
-            document.getElementById('u_norm_1_2').innerText = u; document.getElementById('v_norm_1_2').innerText = v;
-            const types = ['simple', 'associe', 'grand']; const type = types[getRandomInt(0, 2)];
-            let baseAngles = [{ num: 1, den: 6, cosTex: "\\frac{\\sqrt{3}}{2}", val: Math.sqrt(3)/2 }, { num: 1, den: 4, cosTex: "\\frac{\\sqrt{2}}{2}", val: Math.sqrt(2)/2 }, { num: 1, den: 3, cosTex: "\\frac{1}{2}", val: 0.5 }, { num: 1, den: 2, cosTex: "0", val: 0 }];
-            let base = baseAngles[getRandomInt(0, 3)]; 
-            let finalNum, finalAngleTex, analysisText, cosCalcTex;
-            if (type === 'simple') { finalNum = base.num; finalAngleTex = `\\frac{\\pi}{${base.den}}`; analysisText = "C'est un angle remarquable."; cosCalcTex = `\\cos\\left(${finalAngleTex}\\right) = ${base.cosTex}`; } 
-            else if (type === 'associe') { if (Math.random() > 0.5) { finalNum = base.den - base.num; finalAngleTex = `\\frac{${finalNum}\\pi}{${base.den}}`; analysisText = `Angle supplémentaire (pi - x).`; cosCalcTex = `\\cos\\left(\\pi - \\frac{\\pi}{${base.den}}\\right) = -${base.cosTex}`; base.val = -base.val; base.cosTex = "-" + base.cosTex; } else { finalNum = -base.num; finalAngleTex = `-\\frac{\\pi}{${base.den}}`; analysisText = `Angle négatif (-x).`; cosCalcTex = `\\cos(-x) = \\cos(x) = ${base.cosTex}`; } } 
-            else { let tours = getRandomInt(2, 5) * 2; finalNum = tours * base.den + base.num; finalAngleTex = `\\frac{${finalNum}\\pi}{${base.den}}`; analysisText = `Angle > 2pi.`; cosCalcTex = `\\cos\\left(${finalAngleTex}\\right) = ${base.cosTex}`; }
-            document.getElementById('angle_val_1_2').innerHTML = `\\(${finalAngleTex}\\)`;
-            document.getElementById('angle_analysis_1_2').innerHTML = analysisText;
-            document.getElementById('sol_cos_1_2').innerHTML = `\\[${cosCalcTex}\\]`;
-            let prod = u * v; let finalResTex = "";
-            if (Math.abs(base.val) === 0.5) { finalResTex = prod * base.val; } else if (base.val === 0) { finalResTex = "0"; } else { let sign = (base.val < 0) ? "-" : ""; let rootPart = base.cosTex.replace("-", "").replace("\\frac{", "").replace("}{2}", ""); let simplifiedCoeff = prod / 2; if (Number.isInteger(simplifiedCoeff)) { finalResTex = `${sign}${simplifiedCoeff}${rootPart}`; } else { finalResTex = `${sign}\\frac{${prod}}{2}${rootPart}`; } }
-            // Application de fmt() sur u et v pour cohérence, même s'ils sont positifs ici
-            document.getElementById('sol_calc_1_2').innerHTML = `\\[\\vec{u} \\cdot \\vec{v} = ${fmt(u)} \\times ${fmt(v)} \\times \\left( ${base.cosTex} \\right) = ${finalResTex}\\]`;
+            let u = getRandomInt(2, 8); 
+            let v = getRandomInt(2, 8);
+            document.getElementById('u_norm_1_2').innerText = u; 
+            document.getElementById('v_norm_1_2').innerText = v;
+            
+            // Bibliothèque d'angles remarquables de base (0 à pi)
+            let bases = [
+                { num: 1, den: 6, cosStr: "\\frac{\\sqrt{3}}{2}", val: Math.sqrt(3)/2 },
+                { num: 1, den: 4, cosStr: "\\frac{\\sqrt{2}}{2}", val: Math.sqrt(2)/2 },
+                { num: 1, den: 3, cosStr: "\\frac{1}{2}", val: 0.5 },
+                { num: 1, den: 2, cosStr: "0", val: 0 },
+                { num: 2, den: 3, cosStr: "-\\frac{1}{2}", val: -0.5 },
+                { num: 3, den: 4, cosStr: "-\\frac{\\sqrt{2}}{2}", val: -Math.sqrt(2)/2 },
+                { num: 5, den: 6, cosStr: "-\\frac{\\sqrt{3}}{2}", val: -Math.sqrt(3)/2 },
+                { num: 1, den: 1, cosStr: "-1", val: -1 } // Pi
+            ];
+
+            let base = bases[getRandomInt(0, bases.length - 1)];
+            
+            // Génération d'un angle complexe (Mesure non principale)
+            // On ajoute k tours (2k*pi) ou on change le signe
+            let k = getRandomInt(1, 4) * (Math.random() < 0.5 ? 1 : -1); // Nombre de tours relatifs
+            let isNegative = Math.random() < 0.5;
+            
+            // Calcul du numérateur affiché : (num/den) + 2k
+            // Convertissons tout en fraction sur 'den'
+            // Angle = base + 2k*pi = (num + 2k*den)/den * pi
+            let rawNum = base.num + (2 * k * base.den);
+            if (isNegative) { rawNum = -rawNum; }
+
+            // Construction de l'affichage LaTeX de l'angle donné
+            let angleInputTex = "";
+            if (base.den === 1) { // Cas multiples de pi
+                angleInputTex = `${rawNum}\\pi`;
+            } else {
+                angleInputTex = `\\dfrac{${rawNum}\\pi}{${base.den}}`;
+            }
+
+            // Calcul pour la solution (Mesure Principale)
+            // La mesure principale doit être dans ]-pi, pi]
+            // Pour le cosinus, cos(-x) = cos(x), donc le signe initial importe peu pour le résultat final,
+            // mais il est crucial pour la méthode de la mesure principale.
+            
+            let principalNum = base.num;
+            let principalDen = base.den;
+            let finalCos = base.cosStr;
+            // Si l'angle généré était négatif, cos est pair donc cos(-x)=cos(x)
+            // Mais pour l'explication de la mesure principale :
+            let methodStep = "";
+            
+            // Logique d'explication "Mesure Principale"
+            let totalTours = Math.abs(k);
+            let signSymbol = rawNum < 0 ? "-" : "";
+            
+            // Explication didactique
+            let explicationHTML = "";
+            explicationHTML += `<p><strong>1. Recherche de la mesure principale :</strong><br>`;
+            explicationHTML += `L'angle donné est \\(\\alpha = ${angleInputTex}\\). On cherche l'angle \\(\\theta \\in ]-\\pi; \\pi]\\) tel que \\(\\alpha = \\theta + 2k\\pi\\).<br>`;
+            
+            // Méthode simplifiée : division euclidienne du numérateur par 2*den
+            let twoDen = 2 * base.den;
+            let remainder = rawNum % twoDen;
+            
+            // Ajustement pour tomber dans ]-den*pi, den*pi]
+            // Si le reste est trop grand (> den), on retire un tour (2*den)
+            if (remainder > base.den) remainder -= twoDen;
+            if (remainder <= -base.den) remainder += twoDen;
+
+            let principalTex = (base.den === 1) ? `${remainder}\\pi` : `\\dfrac{${remainder}\\pi}{${base.den}}`;
+            
+            explicationHTML += `On retire les tours complets (multiples de \\(2\\pi\\)).<br>`;
+            explicationHTML += `Ici, \\(\\dfrac{${rawNum}\\pi}{${base.den}} = ${principalTex} + ${rawNum < 0 ? "-" : ""}${Math.abs(k)}\\times(2\\pi)\\).<br>`;
+            explicationHTML += `La mesure principale est donc <strong>\\(\\theta = ${principalTex}\\)</strong>.</p>`;
+
+            explicationHTML += `<p><strong>2. Valeur du cosinus :</strong><br>`;
+            
+            // Gestion Cosinus Pair / Impair / Remarquable
+            // Si le reste est négatif, on utilise la parité cos(-x) = cos(x)
+            if (remainder < 0) {
+                 explicationHTML += `Comme la fonction cosinus est paire, \\(\\cos(${principalTex}) = \\cos(${(base.den===1 ? Math.abs(remainder)+"\\pi" : "\\dfrac{"+Math.abs(remainder)+"\\pi}{"+base.den+"}")})\\).<br>`;
+            }
+            explicationHTML += `D'après le cercle trigonométrique : \\[\\cos\\left(${principalTex}\\right) = ${base.cosStr}\\]</p>`;
+
+            // Calcul final produit scalaire
+            let prod = u * v; 
+            let resTex = "";
+            
+            // Formatage propre du résultat final (eviter 10 * 0.5 = 5.0000)
+            if (Math.abs(base.val) === 0.5) { resTex = (prod * base.val).toString(); } 
+            else if (base.val === 0) { resTex = "0"; } 
+            else if (Math.abs(base.val) === 1) { resTex = (prod * base.val).toString(); }
+            else {
+                // Cas avec racine
+                let rootPart = base.cosStr.replace("-", "").replace("\\dfrac{", "").replace("}{2}", "").replace("\\frac{", "");
+                let coeff = prod / 2;
+                let signStr = (base.val < 0) ? "-" : "";
+                if (Number.isInteger(coeff)) {
+                    resTex = `${signStr}${coeff}${rootPart}`;
+                } else {
+                    resTex = `${signStr}\\dfrac{${prod}}{2}${rootPart}`;
+                }
+            }
+
+            let finalCalc = `<p><strong>3. Calcul du produit scalaire :</strong><br>
+            \\[\\vec{u} \\cdot \\vec{v} = ${u} \\times ${v} \\times \\left( ${base.cosStr} \\right) = ${prod} \\times \\left( ${base.cosStr} \\right) = ${resTex}\\]</p>`;
+
+            document.getElementById('angle_val_1_2').innerHTML = `\\(${angleInputTex}\\)`;
+            document.getElementById('angle_analysis_1_2').innerHTML = ""; // On vide le vieux placeholder
+            document.getElementById('sol_cos_1_2').style.display = 'none'; // On cache les vieux blocs
+            document.getElementById('sol_calc_1_2').innerHTML = explicationHTML + finalCalc;
         }
 
-        // Ex 1.3
+        // Ex 1.3 : Orthogonalité
         function generateEx1_3() {
             let k; do { k = getRandomInt(-5, 5); } while (k === 0);
             let v = getRandomInt(3, 8); let u = Math.abs(k) * v + getRandomInt(2, 10);
             document.getElementById('u_norm_1').innerText = u; document.getElementById('v_norm_1').innerText = v;
             let sign = (k < 0) ? "-" : "+"; let abs_k = Math.abs(k);
             document.getElementById('vec_w_eq').innerHTML = "\\(\\vec{w} = \\vec{u} " + sign + " " + abs_k + "\\vec{v}\\)";
-            let num = -k * v * v; let den = u * v; let cos_theta = num / den; let angle = Math.acos(cos_theta) * (180 / Math.PI);
             
-            // Calcul de -k pour l'affichage correct (-2 ou -(-2))
+            let num = -k * v * v; let den = u * v; let cos_theta = num / den; let angle = Math.acos(cos_theta) * (180 / Math.PI);
             let minus_k = -k;
-            document.getElementById('sol_math_1_3').innerHTML = "\\[\\cos(\\theta) = \\frac{" + fmt(minus_k) + " \\times " + fmt(v) + "^2}{" + fmt(u) + " \\times " + fmt(v) + "} = \\frac{" + fmt(minus_k) + " \\times " + fmt(v) + "}{" + fmt(u) + "} \\approx " + cos_theta.toFixed(3) + "\\]";
-            document.getElementById('sol_txt_1_3').innerHTML = "L'angle est \\(\\theta \\approx " + angle.toFixed(1) + "^\\circ\\).";
+
+            // SOLUTION DIDACTIQUE
+            let html = `<p><strong>1. Comprendre la condition d'orthogonalité :</strong><br>
+            Dire que \\(\\vec{w}\\) est orthogonal à \\(\\vec{v}\\) signifie que leur produit scalaire est nul :
+            \\[\\vec{w} \\cdot \\vec{v} = 0\\]</p>
+            
+            <p><strong>2. Remplacer \\(\\vec{w}\\) par son expression :</strong><br>
+            On remplace \\(\\vec{w}\\) par \\((\\vec{u} ${sign} ${abs_k}\\vec{v})\\) :
+            \\[(\\vec{u} ${sign} ${abs_k}\\vec{v}) \\cdot \\vec{v} = 0\\]</p>
+
+            <p><strong>3. Développer (Distributivité) :</strong><br>
+            On distribue le produit scalaire :
+            \\[\\vec{u} \\cdot \\vec{v} ${sign} ${abs_k} (\\vec{v} \\cdot \\vec{v}) = 0\\]
+            Or, \\(\\vec{v} \\cdot \\vec{v} = \\left\\Vert \\vec{v} \\right\\Vert^2\\). L'équation devient :
+            \\[\\vec{u} \\cdot \\vec{v} ${sign} ${abs_k} \\left\\Vert \\vec{v} \\right\\Vert^2 = 0\\]</p>
+
+            <p><strong>4. Isoler \\(\\vec{u} \\cdot \\vec{v}\\) et utiliser la formule du cosinus :</strong><br>
+            \\[\\vec{u} \\cdot \\vec{v} = ${-k}\\left\\Vert \\vec{v} \\right\\Vert^2\\]
+            On sait aussi que \\(\\vec{u} \\cdot \\vec{v} = \\left\\Vert \\vec{u} \\right\\Vert \\times \\left\\Vert \\vec{v} \\right\\Vert \\times \\cos(\\theta)\\).
+            Donc :
+            \\[\\left\\Vert \\vec{u} \\right\\Vert \\times \\left\\Vert \\vec{v} \\right\\Vert \\times \\cos(\\theta) = ${-k} \\times \\left\\Vert \\vec{v} \\right\\Vert^2\\]</p>
+
+            <p><strong>5. Calculer \\(\\cos(\\theta)\\) :</strong><br>
+            On simplifie par \\(\\left\\Vert \\vec{v} \\right\\Vert\\) et on isole le cosinus :
+            \\[\\cos(\\theta) = \\frac{${minus_k} \\times \\left\\Vert \\vec{v} \\right\\Vert}{\\left\\Vert \\vec{u} \\right\\Vert} = \\frac{${minus_k} \\times ${v}}{${u}} = \\frac{${minus_k*v}}{${u}} \\approx ${cos_theta.toFixed(3)}\\]</p>
+            
+            <p><strong>Conclusion :</strong> \\(\\theta = \\cos^{-1}(${cos_theta.toFixed(3)}) \\approx ${angle.toFixed(1)}^\\circ\\).</p>`;
+
+            document.getElementById('sol_math_1_3').innerHTML = html;
+            document.getElementById('sol_txt_1_3').innerText = ""; // Nettoyage
         }
 
-        // Ex 2.3
+        // Ex 2.3 : Analytique
         function generateEx2_3() {
             let Ax=getRandomInt(-5,5), Ay=getRandomInt(-5,5), Bx=getRandomInt(-5,5), By=getRandomInt(-5,5), Cx=getRandomInt(-5,5);
             if(Bx===Ax && By===Ay) Bx+=2; let ux=Bx-Ax, uy=By-Ay; if(uy===0){uy=1;By+=1;}
             let Cy = By - (Cx - Bx) * ux / uy;
+            let unorm = Math.sqrt(ux*ux + uy*uy), BCx = Cx-Bx;
             
             document.getElementById('enonce_A_2_3').innerHTML = "\\(A(" + Ax + "; " + Ay + ")\\)";
             document.getElementById('enonce_B_2_3').innerHTML = "\\(B(" + Bx + "; " + By + ")\\)";
             document.getElementById('enonce_C_2_3').innerHTML = "\\(C(" + Cx + "; y_C)\\)";
 
-            let unorm = Math.sqrt(ux*ux + uy*uy), BCx = Cx-Bx, BCy = Cy-By, BCnorm = Math.sqrt(BCx*BCx+BCy*BCy);
+            // SOLUTION DIDACTIQUE
+            let html = `<p><strong>1. Calcul des coordonnées des vecteurs :</strong><br>
+            Formule : \\(\\vec{AB} \\begin{pmatrix} x_B - x_A \\\\ y_B - y_A \\end{pmatrix}\\) et \\(\\vec{BC} \\begin{pmatrix} x_C - x_B \\\\ y_C - y_B \\end{pmatrix}\\)<br>
+            \\(\\vec{AB} \\begin{pmatrix} ${Bx} - (${fmt(Ax)}) \\\\ ${By} - (${fmt(Ay)}) \\end{pmatrix} = \\begin{pmatrix} ${ux} \\\\ ${uy} \\end{pmatrix}\\)<br>
+            \\(\\vec{BC} \\begin{pmatrix} ${Cx} - (${fmt(Bx)}) \\\\ y_C - (${fmt(By)}) \\end{pmatrix} = \\begin{pmatrix} ${BCx} \\\\ y_C - (${fmt(By)}) \\end{pmatrix}\\)</p>
             
-            // Formatage strict avec fmt()
-            let html = "<ol><li>\\(\\vec{u} = \\begin{pmatrix} " + ux + " \\\\ " + uy + " \\end{pmatrix}\\). Norme : \\(\\approx " + unorm.toFixed(2) + "\\).</li>";
-            html += "<li>Condition d'orthogonalité : \\(\\vec{BC} \\cdot \\vec{u} = 0\\).<br>";
-            html += "\\(" + fmt(BCx) + " \\times " + fmt(ux) + " + (y_C - " + fmt(By) + ") \\times " + fmt(uy) + " = 0\\).<br>";
-            html += "Soit \\(y_C = " + Cy.toFixed(2) + "\\).</li>";
-            html += "<li>Norme BC : \\(\\approx " + BCnorm.toFixed(2) + "\\).</li></ol>";
+            <p><strong>2. Condition d'orthogonalité (Analytique) :</strong><br>
+            Deux vecteurs sont orthogonaux si leur produit scalaire analytique \\(xx' + yy'\\) est nul.<br>
+            Ici : \\(x_{\\vec{AB}} \\times x_{\\vec{BC}} + y_{\\vec{AB}} \\times y_{\\vec{BC}} = 0\\)</p>
+
+            <p><strong>3. Mise en équation :</strong><br>
+            On remplace par les valeurs calculées :<br>
+            \\(${fmt(ux)} \\times ${fmt(BCx)} + ${fmt(uy)} \\times (y_C - (${fmt(By)})) = 0\\)<br>
+            \\(${ux*BCx} + ${uy}(y_C - (${fmt(By)})) = 0\\)</p>
+
+            <p><strong>4. Résolution :</strong><br>
+            \\(${uy}(y_C - (${fmt(By)})) = -(${ux*BCx})\\)<br>
+            \\(y_C - (${fmt(By)}) = \\frac{${-ux*BCx}}{${uy}}\\)<br>
+            \\(y_C = \\frac{${-ux*BCx}}{${uy}} + (${fmt(By)}) = ${Cy.toFixed(2)}\\)</p>`;
+            
             document.getElementById('sol_content_2_3').innerHTML = html;
         }
 
-        // Ex 3.3
+        // Ex 3.3 : Travail force
         function generateEx3_3() {
             let dAB=getRandomInt(5,20), dBC=getRandomInt(5,20), FfAB=getRandomInt(10,50), FfBC=getRandomInt(10,50);
             document.getElementById('dAB_3').innerText=dAB; document.getElementById('FfAB_3').innerText=FfAB;
             document.getElementById('dBC_3').innerText=dBC; document.getElementById('FfBC_3').innerText=FfBC;
             let WAB = FfAB*dAB*(-1), WBC=FfBC*dBC*(-1), Wtot=WAB+WBC;
             
-            // Formatage strict pour WAB et WBC (qui sont négatifs)
-            document.getElementById('sol_math_3_3').innerHTML = "\\[W_{AB}=" + fmt(WAB) + " \\text{ J}, \\quad W_{BC}=" + fmt(WBC) + " \\text{ J}\\]";
-            document.getElementById('sol_txt_3_3').innerHTML = "Total : \\(" + fmt(WAB) + " + " + fmt(WBC) + " = " + Wtot + "\\) J.";
+            // SOLUTION DIDACTIQUE
+            let html = `<p><strong>1. Rappel de la formule du travail :</strong><br>
+            \\[W = \\vec{F} \\cdot \\vec{d} = \\left\\Vert \\vec{F} \\right\\Vert \\times d \\times \\cos(\\alpha)\\]
+            Ici, la force de frottement est toujours <strong>opposée</strong> au mouvement. L'angle est donc \\(\\alpha = 180^\\circ\\) et \\(\\cos(180^\\circ) = -1\\).<br>
+            La formule se simplifie en : \\(W = - F \\times d\\).</p>
+
+            <p><strong>2. Calcul sur le trajet AB (Métal) :</strong><br>
+            \\(W_{AB} = - ${FfAB} \\times ${dAB} = ${fmt(WAB)} \\text{ Joules}\\).</p>
+
+            <p><strong>3. Calcul sur le trajet BC (Bois) :</strong><br>
+            \\(W_{BC} = - ${FfBC} \\times ${dBC} = ${fmt(WBC)} \\text{ Joules}\\).</p>
+
+            <p><strong>4. Travail Total :</strong><br>
+            On additionne les travaux des deux parties :<br>
+            \\(W_{total} = W_{AB} + W_{BC} = ${fmt(WAB)} + (${fmt(WBC)}) = ${Wtot} \\text{ Joules}\\).</p>`;
+
+            document.getElementById('sol_math_3_3').innerHTML = html;
+            document.getElementById('sol_txt_3_3').innerText = "";
         }
 
-        // Ex 4.2
+        // Ex 4.2 : Carré Scalaire
         function generateEx4_2() {
             let u=getRandomInt(4,10), v=getRandomInt(4,10), dot=getRandomInt(-u*v+1, u*v);
             document.getElementById('u_norm_4').innerText=u; document.getElementById('v_norm_4').innerText=v; document.getElementById('u_dot_v_4').innerText=dot;
             let nsq = u*u + v*v + 2*dot;
-            // Formatage strict
-            document.getElementById('sol_math_4_2').innerHTML = "\\[\\|\\vec{u}+\\vec{v}\\|^2 = " + u + "^2 + " + v + "^2 + 2 \\times " + fmt(dot) + " = " + nsq + "\\]";
-            document.getElementById('sol_txt_4_2').innerHTML = "Donc \\(\\approx " + Math.sqrt(nsq).toFixed(2) + "\\).";
+
+            // SOLUTION DIDACTIQUE
+            let html = `<p><strong>1. Identifier l'identité remarquable vectorielle :</strong><br>
+            On cherche \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert\\). On utilise la formule du carré de la somme :
+            \\[\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = \\left\\Vert \\vec{u} \\right\\Vert^2 + \\left\\Vert \\vec{v} \\right\\Vert^2 + 2(\\vec{u} \\cdot \\vec{v})\\]</p>
+
+            <p><strong>2. Application numérique :</strong><br>
+            On remplace par les données (\\(\\left\\Vert \\vec{u} \\right\\Vert=${u}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert=${v}\\), \\(\\vec{u} \\cdot \\vec{v}=${dot}\\)) :<br>
+            \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = ${u}^2 + ${v}^2 + 2 \\times (${fmt(dot)})\\)<br>
+            \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = ${u*u} + ${v*v} + (${2*dot}) = ${nsq}\\)</p>
+
+            <p><strong>3. Conclusion :</strong><br>
+            Pour trouver la norme, on prend la racine carrée :<br>
+            \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert = \\sqrt{${nsq}} \\approx ${Math.sqrt(nsq).toFixed(2)}\\)</p>`;
+
+            document.getElementById('sol_math_4_2').innerHTML = html;
+            document.getElementById('sol_txt_4_2').innerText = "";
         }
 
-        // Ex 5.3
+        // Ex 5.3 : Al-Kashi
         function generateEx5_3() {
             let OA=getRandomInt(80,150), OB=getRandomInt(70,120), AOB=getRandomInt(30,150);
             document.getElementById('OA_5').innerText=OA; document.getElementById('OB_5').innerText=OB; document.getElementById('AOB_5').innerText=AOB;
             drawEx5(OA, OB, AOB);
             let rad=AOB*Math.PI/180, ABsq=(OA*OA+OB*OB-2*OA*OB*Math.cos(rad)).toFixed(2), AB=Math.sqrt(ABsq).toFixed(2);
             let cosOAB=((OA*OA+parseFloat(ABsq)-OB*OB)/(2*OA*AB)).toFixed(3), angOAB=(Math.acos(cosOAB)*180/Math.PI).toFixed(1);
-            
-            // cos(AOB) peut être négatif, donc on utilise fmt() pour le terme cosinus calculé ou on affiche le cos dans la formule
-            document.getElementById('sol_math_5_3_a').innerHTML = "\\[AB^2 \\approx " + ABsq + " \\implies AB \\approx " + AB + "\\]";
-            document.getElementById('sol_math_5_3_b').innerHTML = "\\[\\cos(\\widehat{OAB}) \\approx " + fmt(parseFloat(cosOAB)) + "\\]";
-            document.getElementById('sol_txt_5_3_b').innerHTML = "\\[\\widehat{OAB} \\approx " + angOAB + "^\\circ\\]";
+
+            // SOLUTION DIDACTIQUE
+            let htmlA = `<p><strong>1. Calcul de AB (Théorème d'Al-Kashi) :</strong><br>
+            Dans le triangle OAB, la formule reliant les trois côtés et l'angle \\(\\widehat{AOB}\\) est :
+            \\[AB^2 = OA^2 + OB^2 - 2 \\times OA \\times OB \\times \\cos(\\widehat{AOB})\\]
+            Application numérique :
+            \\[AB^2 = ${OA}^2 + ${OB}^2 - 2 \\times ${OA} \\times ${OB} \\times \\cos(${AOB}^\\circ)\\]
+            Calcul : \\(AB^2 \\approx ${ABsq}\\).<br>
+            Donc \\(AB = \\sqrt{${ABsq}} \\approx ${AB} \\text{ mm}\\).</p>`;
+
+            let htmlB = `<p><strong>2. Calcul de l'angle \\(\\widehat{OAB}\\) :</strong><br>
+            On réutilise Al-Kashi, mais centré sur l'angle A :
+            \\[OB^2 = OA^2 + AB^2 - 2 \\times OA \\times AB \\times \\cos(\\widehat{OAB})\\]
+            On isole le cosinus :
+            \\[\\cos(\\widehat{OAB}) = \\frac{OA^2 + AB^2 - OB^2}{2 \\times OA \\times AB}\\]
+            Application numérique :
+            \\[\\cos(\\widehat{OAB}) \\approx \\frac{${OA}^2 + ${AB}^2 - ${OB}^2}{2 \\times ${OA} \\times ${AB}} \\approx ${cosOAB}\\]
+            Donc \\(\\widehat{OAB} = \\cos^{-1}(${cosOAB}) \\approx ${angOAB}^\\circ\\).</p>`;
+
+            document.getElementById('sol_math_5_3_a').innerHTML = htmlA;
+            document.getElementById('sol_math_5_3_b').innerHTML = htmlB;
+            document.getElementById('sol_txt_5_3_b').innerText = "";
         }
 
         // Ex 6.1
+        // Ex 6.1 : Coordonnées -> Angle
         function generateEx6_1() {
             let ux, uy, vx, vy;
-            do { ux = getRandomInt(-5, 5); uy = getRandomInt(-5, 5); } while(ux===0 && uy===0);
-            do { vx = getRandomInt(-5, 5); vy = getRandomInt(-5, 5); } while(vx===0 && vy===0);
+            // On s'assure d'avoir des vecteurs non nuls
+            do { ux = getRandomInt(-4, 4); uy = getRandomInt(-4, 4); } while(ux===0 && uy===0);
+            do { vx = getRandomInt(-4, 4); vy = getRandomInt(-4, 4); } while(vx===0 && vy===0);
             
             let texU = "\\(\\vec{u} \\begin{pmatrix} " + ux + " \\\\\\\\ " + uy + " \\end{pmatrix}\\)";
             let texV = "\\(\\vec{v} \\begin{pmatrix} " + vx + " \\\\\\\\ " + vy + " \\end{pmatrix}\\)";
@@ -683,17 +1073,65 @@
             let normU = Math.sqrt(ux*ux + uy*uy);
             let normV = Math.sqrt(vx*vx + vy*vy);
             let cosTheta = dotAnalytic / (normU * normV);
-            let thetaDeg = Math.acos(Math.max(-1, Math.min(1, cosTheta))) * (180 / Math.PI);
             
-            let html = "<ol>";
-            html += "<li><strong>Expression Analytique :</strong> \\(" + fmt(ux) + " \\times " + fmt(vx) + " + " + fmt(uy) + " \\times " + fmt(vy) + " = " + dotAnalytic + "\\).</li>";
-            html += "<li><strong>Normes :</strong> \\(\\sqrt{" + (ux*ux+uy*uy) + "}\\) et \\(\\sqrt{" + (vx*vx+vy*vy) + "}\\).</li>";
-            html += "<li><strong>Résultat :</strong> \\(\\cos(\\theta) \\approx " + fmt(parseFloat(cosTheta.toFixed(4))) + "\\). Angle \\(\\theta \\approx " + thetaDeg.toFixed(1) + "^\\circ\\).</li>";
-            html += "</ol>";
+            // Tentative de détection d'angle remarquable pour l'affichage
+            // Tolérance pour les erreurs d'arrondi flottant
+            let epsilon = 0.00001;
+            let remarkableAngle = null;
+            let valAbs = Math.abs(cosTheta);
+            
+            if (Math.abs(valAbs - 0.5) < epsilon) remarkableAngle = "\\pi/3";
+            else if (Math.abs(valAbs - Math.sqrt(2)/2) < epsilon) remarkableAngle = "\\pi/4";
+            else if (Math.abs(valAbs - Math.sqrt(3)/2) < epsilon) remarkableAngle = "\\pi/6";
+            else if (valAbs < epsilon) remarkableAngle = "\\pi/2";
+            else if (Math.abs(valAbs - 1) < epsilon) remarkableAngle = "0";
+
+            let thetaRad = Math.acos(Math.max(-1, Math.min(1, cosTheta)));
+            let thetaDisplay = "";
+            
+            if (remarkableAngle) {
+                // Construction de la fraction LaTeX
+                if (cosTheta < -epsilon && remarkableAngle !== "0" && remarkableAngle !== "\\pi/2") {
+                     // Cas obtus (ex: pi - pi/3 = 2pi/3)
+                     // Simple mapping pour les cas standards
+                     if(remarkableAngle === "\\pi/3") thetaDisplay = "\\dfrac{2\\pi}{3}";
+                     if(remarkableAngle === "\\pi/4") thetaDisplay = "\\dfrac{3\\pi}{4}";
+                     if(remarkableAngle === "\\pi/6") thetaDisplay = "\\dfrac{5\\pi}{6}";
+                } else if (cosTheta < -epsilon && remarkableAngle === "0") {
+                    thetaDisplay = "\\pi";
+                } else {
+                    thetaDisplay = remarkableAngle.replace("/", "}{").replace("\\pi", "\\dfrac{\\pi");
+                    if (thetaDisplay.includes("dfrac")) thetaDisplay += "}"; // fermeture accolade
+                    else thetaDisplay = remarkableAngle === "0" ? "0" : "\\dfrac{\\pi}{2}";
+                }
+            } else {
+                thetaDisplay = thetaRad.toFixed(3) + " \\text{ rad}";
+            }
+
+            let html = `<p><strong>Objectif :</strong> On cherche la mesure de l'angle géométrique \\(\\theta\\) dans l'intervalle \\([0; \\pi]\\).</p>
+            
+            <p><strong>1. Calcul du cosinus :</strong><br>
+            \\[\\cos(\\theta) = \\frac{\\vec{u} \\cdot \\vec{v}}{\\left\\Vert \\vec{u} \\right\\Vert \\times \\left\\Vert \\vec{v} \\right\\Vert} = \\frac{${dotAnalytic}}{\\sqrt{${(normU*normU).toFixed(0)}} \\times \\sqrt{${(normV*normV).toFixed(0)}}}\\]
+            \\[\\cos(\\theta) \\approx ${cosTheta.toFixed(4)}\\]</p>
+
+            <p><strong>2. Déduction de la mesure principale :</strong><br>
+            L'angle entre deux vecteurs est défini dans l'intervalle \\([0; \\pi]\\) (de 0° à 180°).<br>
+            C'est <strong>la mesure principale</strong> positive de l'angle orienté.<br>`;
+            
+            if (remarkableAngle) {
+                html += `On reconnaît ici une valeur remarquable (\\(${cosTheta < 0 ? "-" : ""}${remarkableAngle}\\)).<br>
+                La solution unique dans \\([0; \\pi]\\) est :
+                \\[\\theta = ${thetaDisplay}\\]`;
+            } else {
+                html += `Ce n'est pas une valeur remarquable. On utilise la calculatrice (touche \\(\\arccos\\) ou \\(\\cos^{-1}\\)) qui donne toujours le résultat dans cet intervalle exact :
+                \\[\\theta \\approx ${thetaDisplay}\\]`;
+            }
+            html += `</p>`;
+            
             document.getElementById('sol_content_6_1').innerHTML = html;
         }
 
-        // Ex 6.2
+        // Ex 6.2 : Mixte
         function generateEx6_2() {
             let ux, uy, vx, vy;
             do { ux = getRandomInt(-4, 4); uy = getRandomInt(-4, 4); } while(ux===0 && uy===0);
@@ -709,20 +1147,326 @@
             let nv = Math.sqrt(vx*vx + vy*vy);
             let cosT = dot / (nu * nv); 
             
-            let texSuite = "Norme \\(\\left\\Vert \\vec{v} \\right\\Vert = \\sqrt{" + (vx*vx+vy*vy) + "}\\) et \\(\\cos(\\theta) \\approx " + fmt(parseFloat(cosT.toFixed(3))) + "\\).";
+            let texSuite = "On donne \\(\\left\\Vert \\vec{v} \\right\\Vert = \\sqrt{" + (vx*vx+vy*vy) + "}\\) et \\(\\cos(\\theta) \\approx " + fmt(parseFloat(cosT.toFixed(3))) + "\\).";
             document.getElementById('enonce_suite_6_2').innerHTML = texSuite;
             
-            let geo_approx = nu * nv * parseFloat(cosT.toFixed(3)); 
-            let html = "<ol>";
-            html += "<li><strong>Produit Scalaire (Géométrique) :</strong><br>Calcul approximatif : \\(" + nu.toFixed(2) + " \\times " + nv.toFixed(2) + " \\times " + fmt(parseFloat(cosT.toFixed(3))) + " \\approx " + geo_approx.toFixed(2) + "\\).<br>";
-            html += "<em>Note pédagogique : On arrondit à <strong>" + dot + "</strong>.</em></li>";
-            html += "<li><strong>Produit Scalaire (Analytique) :</strong> \\(" + fmt(ux) + " \\times " + fmt(vx) + " + " + fmt(uy) + " \\times y_v = " + (ux*vx) + " + " + fmt(uy) + "y_v\\).</li>";
-            let produit_ux_vx = ux*vx;
-            html += "<li><strong>Résolution :</strong> \\(y_v = (" + dot + " - " + fmt(produit_ux_vx) + ") / " + fmt(uy) + " = " + vy + "\\).</li>";
-            html += "</ol>";
+            // SOLUTION DIDACTIQUE
+            let html = `<p><strong>Stratégie :</strong> On va calculer le produit scalaire de deux manières différentes et égaler les résultats.</p>
+            
+            <p><strong>1. Manière Géométrique (avec les données de l'énoncé) :</strong><br>
+            Formule : \\(\\vec{u} \\cdot \\vec{v} = \\left\\Vert \\vec{u} \\right\\Vert \\times \\left\\Vert \\vec{v} \\right\\Vert \\times \\cos(\\theta)\\)<br>
+            Il faut d'abord calculer \\(\\left\\Vert \\vec{u} \\right\\Vert = \\sqrt{${ux}^2 + ${uy}^2} = \\sqrt{${ux*ux+uy*uy}} \\approx ${nu.toFixed(2)}\\).<br>
+            Calcul : \\(${nu.toFixed(2)} \\times \\sqrt{${vx*vx+vy*vy}} \\times ${fmt(parseFloat(cosT.toFixed(3)))} \\approx ${dot}\\).<br>
+            <em>(On retient que le produit scalaire vaut ${dot}).</em></p>
+
+            <p><strong>2. Manière Analytique (avec l'inconnue) :</strong><br>
+            Formule : \\(\\vec{u} \\cdot \\vec{v} = xx' + yy'\\)<br>
+            Calcul : \\(${fmt(ux)} \\times ${fmt(vx)} + ${fmt(uy)} \\times y_v = ${ux*vx} + ${fmt(uy)}y_v\\).</p>
+
+            <p><strong>3. Résolution de l'équation :</strong><br>
+            On égale les deux résultats :<br>
+            \\(${ux*vx} + ${fmt(uy)}y_v = ${dot}\\)<br>
+            \\(${fmt(uy)}y_v = ${dot} - (${ux*vx})\\)<br>
+            \\(${fmt(uy)}y_v = ${dot - ux*vx}\\)<br>
+            \\(y_v = \\frac{${dot - ux*vx}}{${uy}} = ${vy}\\).</p>`;
+            
             document.getElementById('sol_content_6_2').innerHTML = html;
         }
+        // --- CORRECTIF DÉFINITIF SECTION 7 ---
 
+        function generateEx7_1() {
+            let ux = getRandomInt(-4, 4), uy = getRandomInt(-4, 4);
+            let vx = getRandomInt(-4, 4), vy = getRandomInt(-4, 4);
+            if(ux===0 && uy===0) ux=2; if(vx===0 && vy===0) vx=2;
+
+            let dot = ux*vx + uy*vy;
+            let nU2 = ux*ux + uy*uy;
+            let nV2 = vx*vx + vy*vy;
+            let nSum2 = nU2 + nV2 + 2*dot;
+            let nSum = Math.sqrt(nSum2);
+
+            let mode = Math.random() < 0.5 ? 'findSum' : 'findDot';
+            let htmlEnonce, htmlQuestion, htmlSol;
+
+            if (mode === 'findSum') {
+                htmlEnonce = `Soit \\(\\vec{u}\\begin{pmatrix} ${ux} \\\\ ${uy} \\end{pmatrix}\\) et \\(\\vec{v}\\begin{pmatrix} ${vx} \\\\ ${vy} \\end{pmatrix}\\).`;
+                // CORRECTION ICI : \\right au lieu de \right
+                htmlQuestion = "Déterminer \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert\\) en passant par le produit scalaire (sans calculer les coordonnées de la somme).";
+                
+                htmlSol = `<ol>
+                    <li>Calcul du produit scalaire (Analytique) : <br>
+                    \\(\\vec{u} \\cdot \\vec{v} = ${fmt(ux)} \\times ${fmt(vx)} + ${fmt(uy)} \\times ${fmt(vy)} = ${dot}\\).</li>
+                    <li>Calcul des carrés des normes : <br>
+                    \\(\\left\\Vert \\vec{u} \\right\\Vert^2 = ${ux}^2 + ${uy}^2 = ${nU2}\\) et \\(\\left\\Vert \\vec{v} \\right\\Vert^2 = ${vx}^2 + ${vy}^2 = ${nV2}\\).</li>
+                    <li>Utilisation de la formule de polarisation inversée : <br>
+                    \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = 2(\\vec{u} \\cdot \\vec{v}) + \\left\\Vert \\vec{u} \\right\\Vert^2 + \\left\\Vert \\vec{v} \\right\\Vert^2\\) <br>
+                    \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = 2(${fmt(dot)}) + ${nU2} + ${nV2} = ${nSum2}\\).</li>
+                    <li>Conclusion : \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert = \\sqrt{${nSum2}} \\approx ${nSum.toFixed(2)}\\).</li>
+                </ol>`;
+            } else {
+                htmlEnonce = `On donne \\(\\left\\Vert \\vec{u} \\right\\Vert^2 = ${nU2}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert^2 = ${nV2}\\) et \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = ${nSum2}\\).`;
+                htmlQuestion = "Déterminer le produit scalaire \\(\\vec{u} \\cdot \\vec{v}\\).";
+                
+                htmlSol = `<p>On utilise l'identité de polarisation :</p>
+                <div class="math-display">\\[\\vec{u} \\cdot \\vec{v} = \\dfrac{1}{2} \\left( \\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 - \\left\\Vert \\vec{u} \\right\\Vert^2 - \\left\\Vert \\vec{v} \\right\\Vert^2 \\right)\\]</div>
+                <p>Calcul : \\(\\dfrac{1}{2} (${nSum2} - ${nU2} - ${nV2}) = \\dfrac{1}{2} (${2*dot}) = ${dot}\\).</p>`;
+            }
+
+            document.getElementById('enonce_7_1').innerHTML = htmlEnonce;
+            document.getElementById('question_7_1').innerHTML = htmlQuestion;
+            document.getElementById('sol_content_7_1').innerHTML = htmlSol;
+        }
+
+        function generateEx7_2() {
+            let ux = getRandomInt(1, 5), uy = getRandomInt(1, 5);
+            let vx = getRandomInt(1, 5), vy = getRandomInt(-5, 5); 
+            
+            let dot = ux*vx + uy*vy;
+            let nU = Math.sqrt(ux*ux + uy*uy);
+            let nV = Math.sqrt(vx*vx + vy*vy);
+            let cosTheta = dot / (nU * nV);
+            let theta = Math.acos(Math.max(-1, Math.min(1, cosTheta))) * (180 / Math.PI);
+
+            let htmlEnonce = `\\(\\vec{u}\\begin{pmatrix} ${ux} \\\\ ${uy} \\end{pmatrix}\\) et \\(\\vec{v}\\begin{pmatrix} ${vx} \\\\ ${vy} \\end{pmatrix}\\) dans un repère orthonormé.`;
+            let htmlQuestion = "Déterminer la mesure de l'angle \\(\\theta = (\\vec{u}, \\vec{v})\\) au degré près.";
+            
+            // CORRECTION ICI : \\right au lieu de \right dans le htmlSol
+            let htmlSol = `<ol>
+                <li><strong>Étape 1 (Analytique) :</strong> Calcul du produit scalaire avec les coordonnées.<br>
+                \\(\\vec{u} \\cdot \\vec{v} = ${ux}\\times${vx} + ${uy}\\times${vy} = ${dot}\\).</li>
+                <li><strong>Étape 2 :</strong> Calcul des normes.<br>
+                \\(\\left\\Vert \\vec{u} \\right\\Vert = \\sqrt{${ux}^2+${uy}^2} \\approx ${nU.toFixed(2)}\\) et \\(\\left\\Vert \\vec{v} \\right\\Vert = \\sqrt{${vx}^2+${vy}^2} \\approx ${nV.toFixed(2)}\\).</li>
+                <li><strong>Étape 3 (Géométrique) :</strong> On isole le cosinus.<br>
+                \\(\\cos(\\theta) = \\dfrac{\\vec{u} \\cdot \\vec{v}}{\\left\\Vert \\vec{u} \\right\\Vert \\times \\left\\Vert \\vec{v} \\right\\Vert} = \\dfrac{${dot}}{${nU.toFixed(2)} \\times ${nV.toFixed(2)}} \\approx ${cosTheta.toFixed(3)}\\).</li>
+                <li><strong>Résultat :</strong> \\(\\theta = \\cos^{-1}(${cosTheta.toFixed(3)}) \\approx ${theta.toFixed(0)}^\\circ\\).</li>
+            </ol>`;
+
+            document.getElementById('enonce_7_2').innerHTML = htmlEnonce;
+            document.getElementById('question_7_2').innerHTML = htmlQuestion;
+            document.getElementById('sol_content_7_2').innerHTML = htmlSol;
+        }
+
+        function generateEx7_3() {
+            let nU = getRandomInt(3, 8);
+            let nV = getRandomInt(3, 8);
+            
+            // Liste des angles remarquables (Degrés et Radians)
+            let commonAngles = [
+                { deg: 30, rad: "\\dfrac{\\pi}{6}" },
+                { deg: 45, rad: "\\dfrac{\\pi}{4}" },
+                { deg: 60, rad: "\\dfrac{\\pi}{3}" },
+                { deg: 90, rad: "\\dfrac{\\pi}{2}" },
+                { deg: 120, rad: "\\dfrac{2\\pi}{3}" },
+                { deg: 135, rad: "\\dfrac{3\\pi}{4}" },
+                { deg: 150, rad: "\\dfrac{5\\pi}{6}" }
+            ];
+            
+            let angleObj = commonAngles[getRandomInt(0, commonAngles.length - 1)];
+            let useRad = Math.random() < 0.5; // 50% de chance d'être en radians
+            
+            let thetaDisplay = useRad ? angleObj.rad : angleObj.deg + "^\\circ";
+            let thetaRadVal = angleObj.deg * Math.PI / 180;
+            
+            let cosVal = Math.cos(thetaRadVal);
+            let dot = nU * nV * cosVal;
+            
+            let nSum2 = nU*nU + nV*nV + 2*dot;
+            let nSum = Math.sqrt(nSum2);
+
+            let mode = Math.random() < 0.5 ? 'findSum' : 'findAngle';
+            let htmlEnonce, htmlQuestion, htmlSol;
+
+            if (mode === 'findSum') {
+                htmlEnonce = `\\(\\left\\Vert \\vec{u} \\right\\Vert = ${nU}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert = ${nV}\\) et \\(\\theta = ${thetaDisplay}\\).`;
+                htmlQuestion = "Déterminer \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert\\).";
+                
+                // Adaptation de la solution pour mentionner la conversion si nécessaire
+                let rappelAngle = useRad ? `(soit ${angleObj.deg}^\\circ)` : "";
+                
+                htmlSol = `<ol>
+                    <li>Calcul du produit scalaire (Géométrique) :<br>
+                    \\(\\vec{u} \\cdot \\vec{v} = ${nU} \\times ${nV} \\times \\cos(${thetaDisplay}) \\approx ${dot.toFixed(2)}\\).</li>
+                    <li>Utilisation de la polarisation (isolant la somme) :<br>
+                    \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = 2(\\vec{u} \\cdot \\vec{v}) + \\left\\Vert \\vec{u} \\right\\Vert^2 + \\left\\Vert \\vec{v} \\right\\Vert^2\\)<br>
+                    \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = 2(${dot.toFixed(2)}) + ${nU*nU} + ${nV*nV} \\approx ${nSum2.toFixed(2)}\\).</li>
+                    <li>Résultat : \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert \\approx \\sqrt{${nSum2.toFixed(2)}} \\approx ${nSum.toFixed(2)}\\).</li>
+                </ol>`;
+            } else {
+                htmlEnonce = `\\(\\left\\Vert \\vec{u} \\right\\Vert = ${nU}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert = ${nV}\\) et \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert \\approx ${nSum.toFixed(2)}\\).`;
+                htmlQuestion = "Retrouver l'angle \\(\\theta\\) (en " + (useRad ? "radians" : "degrés") + ").";
+                
+                htmlSol = `<ol>
+                    <li>Calcul du produit scalaire via Polarisation (3 normes connues) :<br>
+                    \\(\\vec{u} \\cdot \\vec{v} = \\frac{1}{2} (${nSum.toFixed(2)}^2 - ${nU}^2 - ${nV}^2) \\approx ${dot.toFixed(2)}\\).</li>
+                    <li>Lien avec la formule Géométrique :<br>
+                    \\(\\vec{u} \\cdot \\vec{v} = \\left\\Vert \\vec{u} \\right\\Vert \\times \\left\\Vert \\vec{v} \\right\\Vert \\times \\cos(\\theta)\\).</li>
+                    <li>Isolation de l'angle :<br>
+                    \\(\\cos(\\theta) = \\frac{${dot.toFixed(2)}}{${nU} \\times ${nV}} \\approx ${cosVal.toFixed(3)}\\).<br>
+                    Donc \\(\\theta \\approx ${thetaDisplay}\\).</li>
+                </ol>`;
+            }
+
+            document.getElementById('enonce_7_3').innerHTML = htmlEnonce;
+            document.getElementById('question_7_3').innerHTML = htmlQuestion;
+            document.getElementById('sol_content_7_3').innerHTML = htmlSol;
+        }
+        // --- SECTION 8 : LE DÉFI ULTIME (CORRIGÉ) ---
+
+        // --- CORRECTIF DÉFINITIF SECTION 8.1 ---
+
+        function generateEx8_1() {
+            // 1. Générer le scénario complet
+            let ux = getRandomInt(-5, 5), uy = getRandomInt(-5, 5);
+            let vx = getRandomInt(-5, 5), vy = getRandomInt(-5, 5);
+            if(ux===0 && uy===0) ux=1; if(vx===0 && vy===0) vx=1;
+
+            let dot = ux*vx + uy*vy;
+            let nU2 = ux*ux + uy*uy;
+            let nV2 = vx*vx + vy*vy;
+            let nSum2 = nU2 + nV2 + 2*dot;
+            let nSum = Math.sqrt(nSum2);
+
+            let type = getRandomInt(0, 2); 
+            let htmlE, htmlQ, htmlS;
+
+            if (type === 0) {
+                if (vx === 0) vx = 1; 
+                dot = ux*vx + uy*vy; 
+                htmlE = `On donne \\(\\vec{u}\\begin{pmatrix} x \\\\ ${uy} \\end{pmatrix}\\), \\(\\vec{v}\\begin{pmatrix} ${vx} \\\\ ${vy} \\end{pmatrix}\\) et \\(\\vec{u} \\cdot \\vec{v} = ${dot}\\).`;
+                htmlQ = "Déterminer la valeur de \\(x\\).";
+                htmlS = `<ol><li>On écrit la formule analytique : \\(x \\times x' + y \\times y' = \\vec{u} \\cdot \\vec{v}\\).</li><li>On remplace : \\(x \\times ${fmt(vx)} + ${fmt(uy)} \\times ${fmt(vy)} = ${dot}\\).</li><li>Équation : \\(${vx}x + (${uy*vy}) = ${dot}\\).</li><li>Résolution : \\(${vx}x = ${dot} - (${uy*vy}) = ${dot - uy*vy}\\), donc \\(x = ${ux}\\).</li></ol>`;
+            } else if (type === 1) {
+                htmlE = `On donne \\(\\vec{u}\\begin{pmatrix} ${ux} \\\\ ${uy} \\end{pmatrix}\\) et \\(\\vec{v}\\begin{pmatrix} ${vx} \\\\ ${vy} \\end{pmatrix}\\).`;
+                // CORRECTION ICI : \\right au lieu de \right
+                htmlQ = "Calculer \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert\\).";
+                htmlS = `<ol><li><strong>Méthode 1 (Directe) :</strong> Calculer les coordonnées de la somme.<br>\\(\\vec{u}+\\vec{v} \\begin{pmatrix} ${ux}+${fmt(vx)} \\\\ ${uy}+${fmt(vy)} \end{pmatrix} = \\begin{pmatrix} ${ux+vx} \\\\ ${uy+vy} \end{pmatrix}\\).<br>Norme : \\(\\sqrt{(${ux+vx})^2 + (${uy+vy})^2} = \\sqrt{${nSum2}} \\approx ${nSum.toFixed(2)}\\).</li><li><strong>Méthode 2 (Polarisation) :</strong> Calculer le produit scalaire et les normes individuelles.<br>\\(\\vec{u} \\cdot \\vec{v} = ${dot}\\), \\(\\left\\Vert \\vec{u} \\right\\Vert^2 = ${nU2}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert^2 = ${nV2}\\).<br>\\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = ${nU2} + ${nV2} + 2(${dot}) = ${nSum2}\\).</li></ol>`;
+            } else {
+                // CORRECTION MAJEURE ICI : Il y avait un \right qui causait le bug dans htmlE
+                htmlE = `On ne connait pas les coordonnées, mais on sait que \\(\\left\\Vert \\vec{u} \\right\\Vert^2 = ${nU2}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert^2 = ${nV2}\\) et \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = ${nSum2}\\).`;
+                htmlQ = "Retrouver la valeur de \\(\\vec{u} \\cdot \\vec{v}\\).";
+                htmlS = `<p>Il faut utiliser l'identité de polarisation :</p><div class="math-display">\\[\\vec{u} \\cdot \\vec{v} = \\frac{1}{2} \\left( \\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 - \\left\\Vert \\vec{u} \\right\\Vert^2 - \\left\\Vert \\vec{v} \\right\\Vert^2 \\right)\\]</div><p>Calcul : \\(\\frac{1}{2} (${nSum2} - ${nU2} - ${nV2}) = \\frac{1}{2} (${2*dot}) = ${dot}\\).</p>`;
+            }
+
+            document.getElementById('enonce_8_1').innerHTML = htmlE;
+            document.getElementById('question_8_1').innerHTML = htmlQ;
+            document.getElementById('sol_content_8_1').innerHTML = htmlS;
+        }
+
+        function generateEx8_2() {
+            let ux=getRandomInt(2,5), uy=getRandomInt(1,4);
+            let vx=getRandomInt(1,4), vy=getRandomInt(-4,4);
+            let dot = ux*vx + uy*vy;
+            let nU = Math.sqrt(ux*ux+uy*uy); let nV = Math.sqrt(vx*vx+vy*vy);
+            let cosV = dot/(nU*nV); 
+            let angDeg = Math.acos(Math.max(-1,Math.min(1,cosV)))*180/Math.PI;
+
+            let type = getRandomInt(0, 2);
+            let htmlE, htmlQ, htmlS;
+
+            if (type === 0) { 
+                htmlE = `\\(\\vec{u}\\begin{pmatrix} ${ux} \\\\ ${uy} \\end{pmatrix}\\) et \\(\\vec{v}\\begin{pmatrix} ${vx} \\\\ ${vy} \\end{pmatrix}\\).`;
+                htmlQ = "Calculer \\(\\cos(\\theta)\\).";
+                htmlS = `<p><strong>Raisonnement :</strong> On utilise la définition géométrique inversée.</p>
+                <p><strong>1. Produit Scalaire (Analytique) :</strong> \\(\\vec{u} \\cdot \\vec{v} = ${dot}\\).</p>
+                <p><strong>2. Normes :</strong> \\(\\approx ${nU.toFixed(2)}\\) et \\(\\approx ${nV.toFixed(2)}\\).</p>
+                <p><strong>3. Quotient :</strong> \\(\\cos(\\theta) = \\frac{Numérateur}{Dénominateur} = \\frac{${dot}}{${nU.toFixed(2)}\\times${nV.toFixed(2)}} \\approx ${cosV.toFixed(3)}\\).</p>`;
+            } else if (type === 1) { 
+                // CAS PARTICULIER : Angle donné -> on choisit un "joli" angle pour supporter les radians
+                let commonAngles = [
+                    { deg: 30, rad: "\\dfrac{\\pi}{6}" }, { deg: 45, rad: "\\dfrac{\\pi}{4}" }, { deg: 60, rad: "\\dfrac{\\pi}{3}" },
+                    { deg: 90, rad: "\\dfrac{\\pi}{2}" }, { deg: 120, rad: "\\dfrac{2\\pi}{3}" }, { deg: 135, rad: "\\dfrac{3\\pi}{4}" }
+                ];
+                let angleObj = commonAngles[getRandomInt(0, commonAngles.length - 1)];
+                let useRad = Math.random() < 0.5;
+                let thetaDisplay = useRad ? angleObj.rad : angleObj.deg + "^\\circ";
+                
+                // Recalcul du produit scalaire théorique basé sur cet angle parfait
+                let dotTheoretical = nU * nV * Math.cos(angleObj.deg * Math.PI / 180);
+
+                htmlE = `\\(\\left\\Vert \\vec{u} \\right\\Vert=${nU.toFixed(2)}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert=${nV.toFixed(2)}\\) et \\(\\theta=${thetaDisplay}\\).`;
+                htmlQ = "Calculer \\(\\vec{u} \\cdot \\vec{v}\\).";
+                htmlS = `<p><strong>Raisonnement :</strong> C'est l'application directe de la définition géométrique.</p>
+                <p><strong>Formule :</strong> \\(\\vec{u} \\cdot \\vec{v} = \\left\\Vert \\vec{u} \\right\\Vert \\times \\left\\Vert \\vec{v} \\right\\Vert \\times \\cos(\\theta)\\)</p>
+                <p><strong>Calcul :</strong> \\(${nU.toFixed(2)} \\times ${nV.toFixed(2)} \\times \\cos(${thetaDisplay}) \\approx ${dotTheoretical.toFixed(2)}\\).</p>`;
+            } else { 
+                htmlE = `\\(\\vec{u}\\begin{pmatrix} ${ux} \\\\ ${uy} \\end{pmatrix}\\), \\(\\vec{v}\\begin{pmatrix} ${vx} \\\\ y' \\end{pmatrix}\\) et \\(\\vec{u} \\cdot \\vec{v} = ${dot}\\).`;
+                htmlQ = "Retrouver \\(y'\\).";
+                htmlS = `<p><strong>Raisonnement :</strong> On pose l'équation analytique du produit scalaire.</p>
+                <p><strong>Équation :</strong> \\(x x' + y y' = Dot\\) <br>
+                \\(${ux}\\times${vx} + ${uy}y' = ${dot}\\)</p>
+                <p><strong>Résolution :</strong> \\(${uy}y' = ${dot} - ${ux*vx} \\implies y' = ${vy}\\).</p>`;
+            }
+            document.getElementById('enonce_8_2').innerHTML = htmlE;
+            document.getElementById('question_8_2').innerHTML = htmlQ;
+            document.getElementById('sol_content_8_2').innerHTML = htmlS;
+        }
+
+        function generateEx8_3() {
+            let nU = getRandomInt(3,8), nV = getRandomInt(3,8);
+            
+            // Logique Radians / Degrés
+            let commonAngles = [
+                { deg: 45, rad: "\\dfrac{\\pi}{4}" },
+                { deg: 60, rad: "\\dfrac{\\pi}{3}" },
+                { deg: 90, rad: "\\dfrac{\\pi}{2}" },
+                { deg: 120, rad: "\\dfrac{2\\pi}{3}" },
+                { deg: 135, rad: "\\dfrac{3\\pi}{4}" }
+            ];
+            let angleObj = commonAngles[getRandomInt(0, commonAngles.length - 1)];
+            let useRad = Math.random() < 0.5;
+            let thetaDisplay = useRad ? angleObj.rad : angleObj.deg + "^\\circ";
+            
+            let cosVal = Math.cos(angleObj.deg*Math.PI/180);
+            let dot = nU*nV*cosVal;
+            let nSum2 = nU*nU + nV*nV + 2*dot;
+            
+            let type = getRandomInt(0,1); 
+            if (type===0) { 
+                document.getElementById('enonce_8_3').innerHTML = `\\(\\left\\Vert \\vec{u} \\right\\Vert=${nU}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert=${nV}\\) et \\(\\theta=${thetaDisplay}\\).`;
+                document.getElementById('question_8_3').innerHTML = "Calculer \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert\\).";
+                document.getElementById('sol_content_8_3').innerHTML = `<p><strong>Raisonnement :</strong> On utilise la formule du carré scalaire (Al-Kashi vectoriel).</p>
+                <p><strong>1. Calcul du terme croisé (produit scalaire) :</strong><br>
+                \\(\\vec{u} \\cdot \\vec{v} = ${nU} \\times ${nV} \\times \\cos(${thetaDisplay}) \\approx ${dot.toFixed(2)}\\)</p>
+                <p><strong>2. Formule de la somme au carré :</strong><br>
+                \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2 = \\left\\Vert \\vec{u} \\right\\Vert^2 + \\left\\Vert \\vec{v} \\right\\Vert^2 + 2(\\vec{u} \\cdot \\vec{v})\\)<br>
+                \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert^2= ${nU}^2 + ${nV}^2 + 2(${dot.toFixed(2)}) \\approx ${nSum2.toFixed(2)}\\)</p>
+                <p><strong>3. Racine carrée :</strong> \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert\\approx ${Math.sqrt(nSum2).toFixed(2)}\\).</p>`;
+            } else { 
+                document.getElementById('enonce_8_3').innerHTML = `\\(\\left\\Vert \\vec{u} \\right\\Vert=${nU}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert=${nV}\\) et \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert \\approx ${Math.sqrt(nSum2).toFixed(2)}\\).`;
+                document.getElementById('question_8_3').innerHTML = "Retrouver l'angle \\(\\theta\\) (en " + (useRad ? "radians" : "degrés") + ").";
+                document.getElementById('sol_content_8_3').innerHTML = `<p><strong>Raisonnement :</strong> On a les 3 normes, on commence par la Polarisation pour trouver le produit scalaire, puis on déduit l'angle.</p>
+                <p><strong>1. Polarisation :</strong> \\(\\vec{u} \\cdot \\vec{v} = \\frac{1}{2}(${nSum2.toFixed(1)} - ${nU}^2 - ${nV}^2) \\approx ${dot.toFixed(1)}\\).</p>
+                <p><strong>2. Cosinus :</strong> \\(\\frac{\\vec{u} \\cdot \\vec{v}}{\\left\\Vert \\vec{u} \\right\\Vert \\left\\Vert \\vec{v} \\right\\Vert} = \\frac{${dot.toFixed(1)}}{${nU}\\times${nV}} \\approx ${cosVal.toFixed(3)}\\).</p>
+                <p><strong>3. Angle :</strong> \\(\\cos^{-1}(${cosVal.toFixed(3)}) \\approx ${thetaDisplay}\\).</p>`;
+            }
+        }
+	function generateEx8_4() {
+            let nU = getRandomInt(3,8), nV = getRandomInt(3,8);
+            
+            // Logique Radians / Degrés
+            let commonAngles = [
+                { deg: 45, rad: "\\dfrac{\\pi}{4}" },
+                { deg: 60, rad: "\\dfrac{\\pi}{3}" },
+                { deg: 90, rad: "\\dfrac{\\pi}{2}" },
+                { deg: 120, rad: "\\dfrac{2\\pi}{3}" },
+                { deg: 135, rad: "\\dfrac{3\\pi}{4}" }
+            ];
+            let angleObj = commonAngles[getRandomInt(0, commonAngles.length - 1)];
+            let useRad = Math.random() < 0.5;
+            let thetaDisplay = useRad ? angleObj.rad : angleObj.deg + "^\\circ";
+
+            let cosVal = Math.cos(angleObj.deg*Math.PI/180);
+            let dot = nU*nV*cosVal;
+            let nSum2 = nU*nU + nV*nV + 2*dot;
+            
+            document.getElementById('enonce_8_4').innerHTML = `\\(\\left\\Vert \\vec{u} \\right\\Vert=${nU}\\), \\(\\left\\Vert \\vec{v} \\right\\Vert=${nV}\\) et \\(\\left\\Vert \\vec{u} + \\vec{v} \\right\\Vert \\approx ${Math.sqrt(nSum2).toFixed(2)}\\).`;
+            document.getElementById('question_8_4').innerHTML = "Retrouver l'angle \\(\\theta\\) (en " + (useRad ? "radians" : "degrés") + ").";
+            
+            document.getElementById('sol_content_8_4').innerHTML = `<p><strong>Raisonnement :</strong> On a les 3 normes, on commence par la Polarisation pour trouver le produit scalaire, puis on déduit l'angle.</p>
+            <p><strong>1. Polarisation :</strong> \\(\\vec{u} \\cdot \\vec{v} = \\frac{1}{2}(${nSum2.toFixed(1)} - ${nU}^2 - ${nV}^2) \\approx ${dot.toFixed(1)}\\).</p>
+            <p><strong>2. Cosinus :</strong> \\(\\frac{\\vec{u} \\cdot \\vec{v}}{\\left\\Vert \\vec{u} \\right\\Vert \\left\\Vert \\vec{v} \\right\\Vert} = \\frac{${dot.toFixed(1)}}{${nU}\\times${nV}} \\approx ${cosVal.toFixed(3)}\\).</p>
+            <p><strong>3. Angle :</strong> \\(\\cos^{-1}(${cosVal.toFixed(3)}) \\approx ${thetaDisplay}\\).</p>`;
+        }
         function toggleSolution(solutionId) {
             const div = document.getElementById(solutionId);
             div.style.display = (div.style.display === 'none' || div.style.display === '') ? 'block' : 'none';
@@ -754,12 +1498,16 @@
             document.querySelectorAll('.solution-bloc').forEach(b => b.style.display = 'none');
             // Dessins statiques
             drawCourseGeo();
+            drawCourseProjection(); // AJOUT : Dessin de la projection
             drawCourseWork();
             drawCourseAlKashi();
             // Exos
             generateEx1_2(); generateEx1_3(); generateEx2_3(); 
             generateEx3_3(); generateEx4_2(); generateEx5_3();
             generateEx6_1(); generateEx6_2();
+	    generateEx7_1(); generateEx7_2(); generateEx7_3();
+            // NOUVEAU
+            generateEx8_1(); generateEx8_2(); generateEx8_3();generateEx8_4();
             MathJax.typeset();
         }
 
