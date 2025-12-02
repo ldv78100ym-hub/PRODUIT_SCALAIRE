@@ -220,7 +220,13 @@
     </script>
 </head>
 <body>
-
+    <div id="score-panel">
+        <span class="score-title">Mon Score</span>
+        <div class="score-row">
+            <span class="score-success">✅ <span id="score-ok">0</span></span>
+            <span class="score-fail">❌ <span id="score-ko">0</span></span>
+        </div>
+    </div>
     <a href="https://ldv78100ym-hub.github.io/HOME/" id="back-btn">↩ Retour Ressources</a>
 
     <div class="header">
@@ -634,7 +640,8 @@
     </div>
 
     <div class="footer-actions">
-        <button id="copyright-btn" class="btn-action">⚖️ Droits d'Auteur</button>
+        <button id="copyright-btn" class="btn-action">⚖️ Droits d'Auteur</button> 
+        <button class="btn-action" onclick="window.print()" style="background-color: #6c757d; color: white; margin-left: 10px;">🖨️ Imprimer en PDF</button>
     </div>
 
     <div id="copyrightModal" class="modal">
@@ -1543,19 +1550,85 @@
             document.querySelectorAll('.solution-bloc').forEach(b => b.style.display = 'none');
             // Dessins statiques
             drawCourseGeo();
-            drawCourseProjection(); // AJOUT : Dessin de la projection
+            drawCourseProjection();
             drawCourseWork();
             drawCourseAlKashi();
             // Exos
             generateEx1_2(); generateEx1_3(); generateEx2_3(); 
             generateEx3_3(); generateEx4_2(); generateEx5_3();
             generateEx6_1(); generateEx6_2();
-	    generateEx7_1(); generateEx7_2(); generateEx7_3();
-            // NOUVEAU
-            generateEx8_1(); generateEx8_2(); generateEx8_3();generateEx8_4();
+            generateEx7_1(); generateEx7_2(); generateEx7_3();
+            generateEx8_1(); generateEx8_2(); generateEx8_3(); generateEx8_4();
+            
+            // --- NOUVELLE LIGNE ---
+            injectEvalButtons(); 
+            // ---------------------
+            
             MathJax.typeset();
         }
+	// --- GESTION DU SCORE ET AUTO-EVALUATION ---
+        
+        let scoreOk = 0;
+        let scoreKo = 0;
 
+        function updateScoreDisplay() {
+            document.getElementById('score-ok').innerText = scoreOk;
+            document.getElementById('score-ko').innerText = scoreKo;
+        }
+
+        // Cette fonction injecte les boutons "J'ai réussi / J'ai raté" dans chaque bloc solution
+        function injectEvalButtons() {
+            const solutions = document.querySelectorAll('.solution-bloc');
+            solutions.forEach((solDiv) => {
+                // Vérifie si on a déjà injecté les boutons pour ne pas le faire 2 fois
+                if(solDiv.querySelector('.eval-buttons')) return;
+
+                const divBtns = document.createElement('div');
+                divBtns.className = 'eval-buttons';
+                divBtns.innerHTML = `
+                    <p style="margin:0 0 5px 0; font-size:0.9em; color:#555;">Auto-évaluation :</p>
+                    <button class="btn-eval success" onclick="vote(this, true)">✅ J'ai trouvé</button>
+                    <button class="btn-eval fail" onclick="vote(this, false)">❌ Je me suis trompé</button>
+                `;
+                solDiv.appendChild(divBtns);
+            });
+        }
+
+        function vote(btnElement, isSuccess) {
+            // Empêcher de voter plusieurs fois sur le même exo sans recharger
+            const parentDiv = btnElement.parentElement;
+            const buttons = parentDiv.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true); // Désactive les boutons
+
+            if(isSuccess) {
+                scoreOk++;
+                btnElement.style.backgroundColor = "#28a745";
+                btnElement.style.color = "white";
+            } else {
+                scoreKo++;
+                btnElement.style.backgroundColor = "#dc3545";
+                btnElement.style.color = "white";
+            }
+            updateScoreDisplay();
+        }
+
+        // Modification de resetExercise pour réactiver les boutons de vote quand on relance
+        const originalReset = resetExercise; // On sauvegarde votre ancienne fonction
+        resetExercise = function(solutionId, generatorFunction) {
+            // 1. Appeler la fonction d'origine (générer les maths)
+            originalReset(solutionId, generatorFunction);
+            
+            // 2. Réactiver les boutons de vote pour cet exercice
+            const solDiv = document.getElementById(solutionId);
+            if(solDiv) {
+                const buttons = solDiv.querySelectorAll('.btn-eval');
+                buttons.forEach(b => {
+                    b.disabled = false;
+                    b.style.backgroundColor = "#fff"; // Reset couleur
+                    b.style.color = "black";
+                });
+            }
+        };
         window.onload = generateAllExercises;
     </script>
 </body>
