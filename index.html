@@ -162,6 +162,51 @@
         @media print {
             .footer-actions, .btn-action, .modal, #back-btn { display: none !important; }
         }
+	/* --- 1. RESPONSIVE (MOBILE) --- */
+        @media (max-width: 768px) {
+            body { padding: 10px; margin: 0; }
+            .header { flex-direction: column; text-align: center; gap: 10px; }
+            .main-title { font-size: 1.8em; }
+            .math-display { font-size: 1em; padding: 10px; overflow-x: auto; }
+            .data-table { display: block; overflow-x: auto; white-space: nowrap; }
+            canvas { max-width: 100%; height: auto; }
+            /* Panneau de score plus petit sur mobile */
+            #score-panel { top: auto; bottom: 10px; right: 10px; font-size: 0.9em; padding: 8px; }
+        }
+
+        /* --- 2. IMPRESSION (PDF PROPRE) --- */
+        @media print {
+            body { background-color: white; border: none; width: 100%; max-width: 100%; padding: 0; margin: 0; }
+            /* Cacher les éléments interactifs */
+            .btn-action, #back-btn, #score-panel, .footer-actions, .btn-reset-ex, .btn-solution { display: none !important; }
+            /* S'assurer que les solutions sont visibles si l'utilisateur veut imprimer le corrigé */
+            .solution-bloc { display: block !important; border: 1px solid #ccc; break-inside: avoid; }
+            .exercice-bloc { break-inside: avoid; border: 1px solid #333; box-shadow: none; margin-bottom: 20px; }
+            /* Couleurs pour l'impression */
+            .niveau-titre { color: #000 !important; }
+            a { text-decoration: none; color: black; }
+        }
+
+        /* --- 3. WIDGET DE SCORE --- */
+        #score-panel {
+            position: fixed; top: 20px; right: 20px;
+            background-color: #fff; border: 2px solid #007bff;
+            padding: 15px; border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999; font-family: 'Segoe UI', sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .score-row { display: flex; gap: 15px; font-size: 1.2em; font-weight: bold; }
+        .score-success { color: #28a745; }
+        .score-fail { color: #dc3545; }
+        .score-title { font-size: 0.8em; color: #666; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Boutons d'auto-évaluation dans les solutions */
+        .eval-buttons { margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 10px; text-align: center; }
+        .btn-eval { padding: 5px 10px; font-size: 0.9em; border: 1px solid #ccc; background: #fff; cursor: pointer; border-radius: 4px; margin: 0 5px; transition: all 0.2s; }
+        .btn-eval:hover { transform: scale(1.05); }
+        .btn-eval.success:hover { background-color: #d4edda; border-color: #28a745; }
+        .btn-eval.fail:hover { background-color: #f8d7da; border-color: #dc3545; }
     </style>
     
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
